@@ -118,6 +118,7 @@ import org.springframework.util.StringUtils;
  * @author Phillip Webb
  * @author Stephane Nicoll
  * @author Sebastien Deleuze
+ * @author Yanming Zhou
  * @since 16 April 2001
  * @see #registerBeanDefinition
  * @see #addBeanPostProcessor
@@ -1479,6 +1480,9 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			if (candidateName == null) {
 				candidateName = determineHighestPriorityCandidate(candidates, requiredType.toClass());
 			}
+			if (candidateName == null) {
+				candidateName = determineEffectivelyPrimaryCandidate(candidates, requiredType.toClass());
+			}
 			if (candidateName != null) {
 				Object beanInstance = candidates.get(candidateName);
 				if (beanInstance == null) {
@@ -2044,6 +2048,34 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 
 		}
 		return highestPriorityBeanName;
+	}
+
+	/**
+	 * Determine the candidate which is the only one default candidate in the given set of beans.
+	 * @param candidates a Map of candidate names and candidate instances
+	 * (or candidate classes if not created yet) that match the required type
+	 * @param requiredType the target dependency type to match against
+	 * @return the name of the only one default candidate,
+	 * or {@code null} if none found
+	 */
+	@Nullable
+	protected String determineEffectivelyPrimaryCandidate(Map<String, Object> candidates, Class<?> requiredType) {
+		String candidateBeanName = null;
+		for (Map.Entry<String, Object> entry : candidates.entrySet()) {
+			String transformedBeanName = transformedBeanName(entry.getKey());
+			if (containsBeanDefinition(transformedBeanName)) {
+				RootBeanDefinition bd = getMergedLocalBeanDefinition(transformedBeanName);
+				if (bd.isAutowireCandidate() && bd.isDefaultCandidate()) {
+					if (candidateBeanName == null) {
+						candidateBeanName = entry.getKey();
+					}
+					else {
+						return null;
+					}
+				}
+			}
+		}
+		return candidateBeanName;
 	}
 
 	/**
