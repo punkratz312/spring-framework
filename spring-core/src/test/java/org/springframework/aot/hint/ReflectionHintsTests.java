@@ -246,6 +246,8 @@ class ReflectionHintsTests {
 	@SuppressWarnings("unused")
 	static class TestType {
 
+		private @Nullable String field;
+
 		void setName(String name) {
 
 		}

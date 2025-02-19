@@ -3,7 +3,6 @@ import org.springframework.build.shadow.ShadowSource
 
 plugins {
 	id 'me.champeau.mrjar'
-	id('org.openrewrite.rewrite') version('7.1.4')
 }
 
 description = "Spring Core"
