@@ -67,15 +67,15 @@ task objenesisSourceJar(type: Jar) {
 }
 
 dependencies {
-	api("commons-logging:commons-logging")
-	api("org.jspecify:jspecify")
+	javapoet("com.squareup:javapoet:${javapoetVersion}@jar")
+	objenesis("org.objenesis:objenesis:${objenesisVersion}@jar")
 	api(files(javapoetRepackJar))
 	api(files(objenesisRepackJar))
+	api("commons-logging:commons-logging")
+	api("org.jspecify:jspecify")
 	compileOnly("com.google.code.findbugs:jsr305")
 	compileOnly("io.projectreactor.tools:blockhound")
 	compileOnly("org.graalvm.sdk:graal-sdk")
-	javapoet("com.squareup:javapoet:${javapoetVersion}@jar")
-	objenesis("org.objenesis:objenesis:${objenesisVersion}@jar")
 	optional("io.micrometer:context-propagation")
 	optional("io.netty:netty-buffer")
 	optional("io.projectreactor:reactor-core")
@@ -88,25 +88,24 @@ dependencies {
 	optional("org.jetbrains.kotlin:kotlin-stdlib")
 	optional("org.jetbrains.kotlinx:kotlinx-coroutines-core")
 	optional("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
-	rewrite "org.openrewrite.recipe:rewrite-static-analysis:2.2.0"
 	testFixturesImplementation("io.projectreactor:reactor-test")
 	testFixturesImplementation("org.assertj:assertj-core")
+	testFixturesImplementation("org.junit.platform:junit-platform-launcher")
 	testFixturesImplementation("org.junit.jupiter:junit-jupiter-api")
 	testFixturesImplementation("org.junit.jupiter:junit-jupiter-params")
-	testFixturesImplementation("org.junit.platform:junit-platform-launcher")
 	testFixturesImplementation("org.xmlunit:xmlunit-assertj")
 	testImplementation("com.fasterxml.jackson.core:jackson-databind")
 	testImplementation("com.fasterxml.woodstox:woodstox-core")
 	testImplementation("com.google.code.findbugs:jsr305")
-	testImplementation("com.networknt:json-schema-validator");
 	testImplementation("com.squareup.okhttp3:mockwebserver")
-	testImplementation("io.projectreactor.tools:blockhound")
 	testImplementation("io.projectreactor:reactor-test")
+	testImplementation("io.projectreactor.tools:blockhound")
 	testImplementation("jakarta.annotation:jakarta.annotation-api")
 	testImplementation("jakarta.xml.bind:jakarta.xml.bind-api")
-	testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 	testImplementation("org.jetbrains.kotlinx:kotlinx-serialization-json")
+	testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 	testImplementation("org.mockito:mockito-core")
+	testImplementation("com.networknt:json-schema-validator");
 	testImplementation("org.skyscreamer:jsonassert")
 	testImplementation("org.xmlunit:xmlunit-assertj")
 	testImplementation("org.xmlunit:xmlunit-matchers")
@@ -163,9 +162,3 @@ eclipse {
 }
 
 tasks['eclipse'].dependsOn(javapoetRepackJar, javapoetSourceJar, objenesisRepackJar, objenesisSourceJar)
-
-rewrite {
-	activeRecipe("org.openrewrite.staticanalysis.RemoveUnusedPrivateFields")
-	activeRecipe("org.openrewrite.staticanalysis.RemoveUnusedPrivateMethods")
-	setExportDatatables(true)
-}
