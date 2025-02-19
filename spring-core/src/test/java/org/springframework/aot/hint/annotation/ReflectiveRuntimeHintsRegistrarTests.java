@@ -167,8 +167,6 @@ class ReflectiveRuntimeHintsRegistrarTests {
 	@SuppressWarnings("unused")
 	static class SampleTypeAnnotatedBean {
 
-		private String notManaged;
-
 		public void notManaged() {
 		}
 	}

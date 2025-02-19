@@ -166,6 +166,6 @@ tasks['eclipse'].dependsOn(javapoetRepackJar, javapoetSourceJar, objenesisRepack
 
 rewrite {
 	activeRecipe("org.openrewrite.staticanalysis.RemoveUnusedPrivateFields")
-//	activeRecipe("org.openrewrite.staticanalysis.RemoveUnusedPrivateMethods")
+	activeRecipe("org.openrewrite.staticanalysis.RemoveUnusedPrivateMethods")
 	setExportDatatables(true)
 }

@@ -447,8 +447,6 @@ class ReflectionHintsPredicatesTests {
 	@SuppressWarnings("unused")
 	static class SampleClass {
 
-		private String privateField;
-
 		public String publicField;
 
 		public SampleClass() {

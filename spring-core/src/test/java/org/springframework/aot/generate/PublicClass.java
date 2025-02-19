@@ -19,8 +19,6 @@ package org.springframework.aot.generate;
 @SuppressWarnings("unused")
 public class PublicClass {
 
-	private String privateField;
-
 	String protectedField;
 
 	public PackagePrivateClass[] packagePrivateClasses;
