@@ -16,9 +16,8 @@
 	<module name="TreeWalker">
 		<!-- Imports -->
 		<module name="AvoidStarImport"/>
+		<!-- samples need some flexibility https://github.com/spring-projects/spring-framework/pull/34477 -->
+		<!-- <module name="UnusedImports"/>-->
 		<module name="RedundantImport"/>
-		<!-- Best Practice -->
-		<!-- samples need some flexibility with the code style -->
-		<!-- https://github.com/spring-projects/spring-framework/pull/34477-->
 	</module>
 </module>
