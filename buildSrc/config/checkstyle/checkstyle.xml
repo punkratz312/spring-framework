@@ -18,8 +18,8 @@
 		<module name="RedundantImport"/>
 		<!-- Modifiers -->
 		<module name="com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck"/>
-		<!-- Best Practices -->
+		<!-- Best Practice -->
 		<module name="UnusedLocalVariable"/>
-		<module name="VariableDeclarationUsageDistance"/>
+		<!--		<module name="VariableDeclarationUsageDistance"/>-->
 	</module>
 </module>

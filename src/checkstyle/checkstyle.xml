@@ -245,7 +245,7 @@
 		<module name="io.spring.javaformat.checkstyle.check.SpringCatchCheck"/>
 		<module name="io.spring.javaformat.checkstyle.check.SpringJavadocCheck"/>
 		<module name="io.spring.javaformat.checkstyle.check.SpringJUnit5Check"/>
-		<!-- Best Practices -->
+		<!-- Best Practice -->
 		<!-- <module name="UnusedLocalVariable"/> fix with https://docs.openrewrite.org/recipes/staticanalysis/removeunusedprivatefields#usage -->
 		<!-- <module name="UnusedLocalMethod"/> wait for https://github.com/checkstyle/checkstyle/issues/16375 -->
 		<!-- <module name="VariableDeclarationUsageDistance"/> wait for https://github.com/openrewrite/rewrite-static-analysis/issues/469 -->
