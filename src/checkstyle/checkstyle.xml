@@ -55,7 +55,6 @@
 		</module>
 		<!-- Coding -->
 		<module name="com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck"/>
-		<module name="com.puppycrawl.tools.checkstyle.checks.coding.EmptyStatementCheck"/>
 		<module name="com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck"/>
 		<module name="com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanExpressionCheck"/>
 		<module name="com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheck"/>
@@ -251,7 +250,7 @@
 		<module name="io.spring.javaformat.checkstyle.check.SpringJUnit5Check"/>
 		<!-- Best Practice -->
 		<module name="UnusedLocalVariable"/>
-		<!--		<module name="EmptyStatement"/>-->
+		<module name="EmptyStatement"/>
 		<!-- <module name="UnusedLocalMethod"/> wait for https://github.com/checkstyle/checkstyle/issues/16375 -->
 		<!-- <module name="VariableDeclarationUsageDistance"/> wait for https://github.com/openrewrite/rewrite-static-analysis/issues/469 -->
 	</module>
