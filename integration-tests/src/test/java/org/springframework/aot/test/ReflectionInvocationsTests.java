@@ -36,7 +36,7 @@ class ReflectionInvocationsTests {
 
 		assertThat(RuntimeHintsRecorder.record(() -> {
 			SampleReflection sample = new SampleReflection();
-			sample.sample(); // does String.class.getMethods();
+			sample.sample(); // String.class.getMethods();
 		})).match(hints);
 	}
 
@@ -48,7 +48,7 @@ class ReflectionInvocationsTests {
 
 		assertThat(RuntimeHintsRecorder.record(() -> {
 			SampleReflection sample = new SampleReflection();
-			sample.multipleCalls(); // does String.class.getMethods(); Integer.class.getMethods();
+			sample.multipleCalls(); // String.class.getMethods(); Integer.class.getMethods();
 		})).match(hints);
 	}
 
