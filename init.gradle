@@ -11,6 +11,7 @@ rootProject {
     }
     rewrite {
         activeRecipe("org.openrewrite.staticanalysis.RemoveUnusedPrivateFields")
+        activeRecipe("org.openrewrite.staticanalysis.RemoveUnusedPrivateMethods")
         setExportDatatables(true)
     }
     afterEvaluate {
