@@ -21,7 +21,6 @@
 		<!-- Best Practice -->
 		<module name="UnusedLocalVariable"/>
 		<module name="EmptyStatement"/>
-		<!-- <module name="UnusedLocalMethod"/> wait for https://github.com/checkstyle/checkstyle/issues/16375 -->
 		<module name="VariableDeclarationUsageDistance"/>
 	</module>
 </module>
