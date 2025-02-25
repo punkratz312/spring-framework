@@ -37,6 +37,8 @@ import org.springframework.web.client.RestTemplate;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.http.MediaType.TEXT_PLAIN;
 import static org.springframework.test.web.client.ExpectedCount.manyTimes;
 import static org.springframework.test.web.client.ExpectedCount.never;
 import static org.springframework.test.web.client.ExpectedCount.once;
@@ -69,11 +71,10 @@ public class SampleTests {
 
 		String responseBody = "{\"name\" : \"Ludwig van Beethoven\", \"someDouble\" : \"1.6035\"}";
 
-		this.mockServer.expect(requestTo("/composers/42")).andExpect(method(HttpMethod.GET))
+		this.mockServer.expect(requestTo("/composers/42")).andExpect(method(GET))
 			.andRespond(withSuccess(responseBody, MediaType.APPLICATION_JSON));
 
-		@SuppressWarnings("unused")
-		Person ludwig = this.restTemplate.getForObject("/composers/{id}", Person.class, 42);
+		this.restTemplate.getForObject("/composers/{id}", Person.class, 42);
 
 		// We are only validating the request. The response is mocked out.
 		// hotel.getId() == 42
@@ -87,11 +88,10 @@ public class SampleTests {
 
 		String responseBody = "{\"name\" : \"Ludwig van Beethoven\", \"someDouble\" : \"1.6035\"}";
 
-		this.mockServer.expect(manyTimes(), requestTo("/composers/42")).andExpect(method(HttpMethod.GET))
+		this.mockServer.expect(manyTimes(), requestTo("/composers/42")).andExpect(method(GET))
 				.andRespond(withSuccess(responseBody, MediaType.APPLICATION_JSON));
 
-		@SuppressWarnings("unused")
-		Person ludwig = this.restTemplate.getForObject("/composers/{id}", Person.class, 42);
+		this.restTemplate.getForObject("/composers/{id}", Person.class, 42);
 
 		// We are only validating the request. The response is mocked out.
 		// hotel.getId() == 42
@@ -109,9 +109,9 @@ public class SampleTests {
 
 		String responseBody = "{\"name\" : \"Ludwig van Beethoven\", \"someDouble\" : \"1.6035\"}";
 
-		this.mockServer.expect(once(), requestTo("/composers/42")).andExpect(method(HttpMethod.GET))
+		this.mockServer.expect(once(), requestTo("/composers/42")).andExpect(method(GET))
 				.andRespond(withSuccess(responseBody, MediaType.APPLICATION_JSON));
-		this.mockServer.expect(never(), requestTo("/composers/43")).andExpect(method(HttpMethod.GET))
+		this.mockServer.expect(never(), requestTo("/composers/43")).andExpect(method(GET))
 				.andRespond(withSuccess(responseBody, MediaType.APPLICATION_JSON));
 
 		this.restTemplate.getForObject("/composers/{id}", Person.class, 42);
@@ -124,9 +124,9 @@ public class SampleTests {
 
 		String responseBody = "{\"name\" : \"Ludwig van Beethoven\", \"someDouble\" : \"1.6035\"}";
 
-		this.mockServer.expect(once(), requestTo("/composers/42")).andExpect(method(HttpMethod.GET))
+		this.mockServer.expect(once(), requestTo("/composers/42")).andExpect(method(GET))
 				.andRespond(withSuccess(responseBody, MediaType.APPLICATION_JSON));
-		this.mockServer.expect(never(), requestTo("/composers/43")).andExpect(method(HttpMethod.GET))
+		this.mockServer.expect(never(), requestTo("/composers/43")).andExpect(method(GET))
 				.andRespond(withSuccess(responseBody, MediaType.APPLICATION_JSON));
 
 		this.restTemplate.getForObject("/composers/{id}", Person.class, 42);
@@ -139,11 +139,10 @@ public class SampleTests {
 
 		Resource responseBody = new ClassPathResource("ludwig.json", this.getClass());
 
-		this.mockServer.expect(requestTo("/composers/42")).andExpect(method(HttpMethod.GET))
+		this.mockServer.expect(requestTo("/composers/42")).andExpect(method(GET))
 			.andRespond(withSuccess(responseBody, MediaType.APPLICATION_JSON));
 
-		@SuppressWarnings("unused")
-		Person ludwig = this.restTemplate.getForObject("/composers/{id}", Person.class, 42);
+		this.restTemplate.getForObject("/composers/{id}", Person.class, 42);
 
 		// hotel.getId() == 42
 		// hotel.getName().equals("Holiday Inn")
@@ -154,25 +153,19 @@ public class SampleTests {
 	@Test
 	public void verify() {
 
-		this.mockServer.expect(requestTo("/number")).andExpect(method(HttpMethod.GET))
-			.andRespond(withSuccess("1", MediaType.TEXT_PLAIN));
+		this.mockServer.expect(requestTo("/number")).andExpect(method(GET))
+				.andRespond(withSuccess("1", TEXT_PLAIN));
 
-		this.mockServer.expect(requestTo("/number")).andExpect(method(HttpMethod.GET))
-			.andRespond(withSuccess("2", MediaType.TEXT_PLAIN));
+		this.mockServer.expect(requestTo("/number")).andExpect(method(GET))
+				.andRespond(withSuccess("2", TEXT_PLAIN));
 
-		this.mockServer.expect(requestTo("/number")).andExpect(method(HttpMethod.GET))
-			.andRespond(withSuccess("4", MediaType.TEXT_PLAIN));
+		this.mockServer.expect(requestTo("/number")).andExpect(method(GET))
+				.andRespond(withSuccess("4", TEXT_PLAIN));
 
-		this.mockServer.expect(requestTo("/number")).andExpect(method(HttpMethod.GET))
-			.andRespond(withSuccess("8", MediaType.TEXT_PLAIN));
+		this.mockServer.expect(requestTo("/number")).andExpect(method(GET)).andRespond(withSuccess("8", TEXT_PLAIN));
 
-		@SuppressWarnings("unused")
-		String result1 = this.restTemplate.getForObject("/number", String.class);
-		// result1 == "1"
-
-		@SuppressWarnings("unused")
-		String result2 = this.restTemplate.getForObject("/number", String.class);
-		// result == "2"
+		assertThat(this.restTemplate.getForObject("/number", String.class)).isEqualTo("1");
+		assertThat(this.restTemplate.getForObject("/number", String.class)).isEqualTo("2");
 
 		try {
 			this.mockServer.verify();
@@ -195,7 +188,7 @@ public class SampleTests {
 				.bufferContent()  // enable repeated reads of response body
 				.build();
 
-		mockServer.expect(requestTo("/composers/42")).andExpect(method(HttpMethod.GET))
+		mockServer.expect(requestTo("/composers/42")).andExpect(method(GET))
 				.andRespond(withSuccess(resource, MediaType.APPLICATION_JSON));
 
 		restTemplate.getForObject("/composers/{id}", Person.class, 42);
