@@ -27,8 +27,8 @@ public class SampleReflection {
 	}
 
 	public void multipleCalls() {
-		String.class.getMethods();
-		Integer.class.getMethods();
+//		String.class.getMethods();
+//		Integer.class.getMethods();
 	}
 
 }

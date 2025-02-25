@@ -36,7 +36,7 @@ class ReflectionInvocationsTests {
 
 		RuntimeHintsInvocations invocations = org.springframework.aot.test.agent.RuntimeHintsRecorder.record(() -> {
 			SampleReflection sample = new SampleReflection();
-			sample.sample(); // does Method[] methods = String.class.getMethods();
+			sample.sample(); // does String.class.getMethods();
 		});
 		assertThat(invocations).match(hints);
 	}
@@ -48,7 +48,7 @@ class ReflectionInvocationsTests {
 		hints.reflection().registerType(Integer.class);
 		RuntimeHintsInvocations invocations = org.springframework.aot.test.agent.RuntimeHintsRecorder.record(() -> {
 			SampleReflection sample = new SampleReflection();
-			sample.multipleCalls(); // does Method[] methods = String.class.getMethods(); methods = Integer.class.getMethods();
+			sample.multipleCalls(); // does String.class.getMethods(); Integer.class.getMethods();
 		});
 		assertThat(invocations).match(hints);
 	}
