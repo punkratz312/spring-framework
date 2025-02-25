@@ -251,6 +251,7 @@
 		<module name="io.spring.javaformat.checkstyle.check.SpringJUnit5Check"/>
 		<!-- Best Practice -->
 		<module name="UnusedLocalVariable"/>
+		<!--		<module name="EmptyStatement"/>-->
 		<!-- <module name="UnusedLocalMethod"/> wait for https://github.com/checkstyle/checkstyle/issues/16375 -->
 		<!-- <module name="VariableDeclarationUsageDistance"/> wait for https://github.com/openrewrite/rewrite-static-analysis/issues/469 -->
 	</module>
