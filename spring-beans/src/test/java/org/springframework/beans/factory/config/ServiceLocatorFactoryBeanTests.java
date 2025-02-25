@@ -123,15 +123,11 @@ class ServiceLocatorFactoryBeanTests {
 				.addPropertyValue("serviceLocatorInterface", TestServiceLocator2.class)
 				.getBeanDefinition());
 
-		// test string-arg getter with null id
-		TestServiceLocator2 factory = (TestServiceLocator2) bf.getBean("factory");
-
-		factory.getTestService(null);
-		// now test with explicit id
-		factory.getTestService("testService");
-		// now verify failure on bad id
-		assertThatExceptionOfType(NoSuchBeanDefinitionException.class).isThrownBy(() ->
-				factory.getTestService("bogusTestService"));
+		final var factory = (TestServiceLocator2) bf.getBean("factory"); // test string-arg getter
+		factory.getTestService(null); // with null id
+		factory.getTestService("testService"); // test with explicit id
+		assertThatExceptionOfType(NoSuchBeanDefinitionException.class)
+				.isThrownBy(() -> factory.getTestService("bogusTestService")); // verify failure on bad id
 	}
 
 	@Disabled @Test // worked when using an ApplicationContext (see commented), fails when using BeanFactory
