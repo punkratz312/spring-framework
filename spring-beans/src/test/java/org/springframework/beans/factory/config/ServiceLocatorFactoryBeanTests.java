@@ -126,10 +126,9 @@ class ServiceLocatorFactoryBeanTests {
 		// test string-arg getter with null id
 		TestServiceLocator2 factory = (TestServiceLocator2) bf.getBean("factory");
 
-		@SuppressWarnings("unused")
-		TestService testBean = factory.getTestService(null);
+		factory.getTestService(null);
 		// now test with explicit id
-		testBean = factory.getTestService("testService");
+		factory.getTestService("testService");
 		// now verify failure on bad id
 		assertThatExceptionOfType(NoSuchBeanDefinitionException.class).isThrownBy(() ->
 				factory.getTestService("bogusTestService"));
@@ -302,8 +301,6 @@ class ServiceLocatorFactoryBeanTests {
 
 
 	public interface ServiceLocatorInterfaceWithExtraNonCompliantMethod {
-
-		TestService2 getTestService();
 
 		TestService2 getTestService(String serviceName, String defaultNotAllowedParameter);
 	}
