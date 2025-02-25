@@ -13,7 +13,7 @@
 		<property name="packageInfoHeaderType" value="none"/>
 	</module>
 	<module name="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
-	<module name="JavadocPackage" /><!-- package-info.java -->
+	<module name="JavadocPackage"/> <!-- package-info.java -->
 	<!-- TreeWalker Checks -->
 	<module name="TreeWalker">
 		<!-- Imports -->
