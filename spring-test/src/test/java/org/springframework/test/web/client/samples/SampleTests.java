@@ -138,7 +138,7 @@ public class SampleTests {
 		Resource responseBody = new ClassPathResource("ludwig.json", this.getClass());
 
 		this.mockServer.expect(requestTo("/composers/42")).andExpect(method(HttpMethod.GET))
-				.andRespond(withSuccess(responseBody, MediaType.APPLICATION_JSON));
+			.andRespond(withSuccess(responseBody, MediaType.APPLICATION_JSON));
 
 		this.restTemplate.getForObject("/composers/{id}", Person.class, 42);
 
