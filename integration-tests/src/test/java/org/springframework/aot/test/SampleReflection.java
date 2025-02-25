@@ -16,20 +16,16 @@
 
 package org.springframework.aot.test;
 
-import java.lang.reflect.Method;
-
 /**
  * @author Brian Clozel
  * @since 6.0
  */
 public class SampleReflection {
 
-	@SuppressWarnings("unused")
 	public void sample() {
 		String.class.getMethods();
 	}
 
-	@SuppressWarnings("unused")
 	public void multipleCalls() {
 		String.class.getMethods();
 		Integer.class.getMethods();

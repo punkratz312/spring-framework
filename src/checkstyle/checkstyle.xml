@@ -16,6 +16,10 @@
 	<module name="JavadocPackage" /><!-- package-info.java -->
 	<!-- TreeWalker Checks -->
 	<module name="TreeWalker">
+		<!-- Imports -->
+		<module name="AvoidStarImport"/>
+		<module name="UnusedImports"/> <!-- review: needs to be explicit activated -->
+		<module name="RedundantImport"/>
 		<!-- Annotations -->
 		<module name="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck">
 			<property name="elementStyle" value="compact"/>
