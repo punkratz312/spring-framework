@@ -18,5 +18,6 @@
 		<module name="AvoidStarImport"/>
 		<!-- <module name="UnusedImports"/>--> <!-- samples need some flexibility https://github.com/spring-projects/spring-framework/pull/34477 -->
 		<module name="RedundantImport"/>
+		<module name="UnusedLocalVariable"/>
 	</module>
 </module>
